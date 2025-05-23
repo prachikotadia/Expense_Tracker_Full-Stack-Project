@@ -1,0 +1,386 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 25% 95%;
+    --foreground: 224 71.4% 4.1%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 224 71.4% 4.1%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar theme */
+    --sidebar-background: 225 29% 97%;
+    --sidebar-foreground: 222 47% 11.2%;
+    --sidebar-accent: 221 83% 53%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 214.3 31.8% 91.4%;
+    --sidebar-ring: 221 83% 53%;
+
+    /* Chart & UI colors */
+    --chart-green: 151 73% 65%;
+    --chart-red: 354 100% 70%;
+    --chart-purple: 262 83% 73%;
+    --chart-yellow: 53 97% 67%;
+    --chart-blue: 199 89% 64%;
+  }
+
+  .dark {
+    --background: 224 40% 9%;
+    --foreground: 210 20% 98%;
+
+    --card: 224 32% 12%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 224 32% 12%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    /* Sidebar theme - dark */
+    --sidebar-background: 224 35% 8%;
+    --sidebar-foreground: 210 20% 98%;
+    --sidebar-accent: 217.2 91.2% 59.8%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 215 27.9% 16.9%;
+    --sidebar-ring: 224 76.3% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply backdrop-blur-lg bg-white/5 border border-white/10;
+  }
+
+  .animate-hover {
+    @apply transition-all duration-300 hover:scale-105;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(155, 155, 155, 0.5);
+    border-radius: 20px;
+  }
+
+  .hover-lift {
+    @apply transition-transform duration-200 ease-out hover:-translate-y-1;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-primary/10;
+  }
+
+  .gradient-border {
+    border-image: linear-gradient(to right, hsl(var(--primary)), transparent) 1;
+  }
+  
+  /* Mobile-specific utilities */
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Responsive text truncation */
+  .text-truncate-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .text-truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Gradient background when enabled */
+.use-gradient {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--background)) 0%,
+    hsl(var(--muted)) 100%
+  );
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Gradient card effect */
+.card-gradient {
+  background: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Custom button with gradient hover effect */
+.btn-gradient {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--primary)/0.7));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.btn-gradient:hover::before {
+  opacity: 1;
+}
+
+/* Finance theme specific styles */
+.finance-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.finance-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Apple style glassmorphism */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.dark .glass-effect {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Gradient Backgrounds */
+.gradient-blue {
+  @apply bg-gradient-to-br from-blue-400 to-indigo-600;
+}
+
+.gradient-green {
+  @apply bg-gradient-to-br from-green-400 to-emerald-600;
+}
+
+.gradient-purple {
+  @apply bg-gradient-to-br from-purple-400 to-indigo-600;
+}
+
+.gradient-sunset {
+  @apply bg-gradient-to-br from-orange-400 to-rose-600;
+}
+
+.gradient-ocean {
+  @apply bg-gradient-to-br from-sky-400 to-blue-600;
+}
+
+.gradient-candy {
+  @apply bg-gradient-to-br from-pink-400 to-red-600;
+}
+
+/* Enhanced Card Styles */
+.card-glass {
+  @apply bg-background/80 backdrop-blur-md border border-muted;
+}
+
+.card-highlight {
+  @apply border-l-4 border-l-primary;
+}
+
+/* Animated Pulse Dot */
+.pulse-dot {
+  @apply relative h-2 w-2 rounded-full bg-primary;
+}
+
+.pulse-dot::after {
+  content: '';
+  @apply absolute top-0 left-0 h-full w-full rounded-full bg-primary;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+}
+
+/* Apple-style UI improvements */
+.apple-card {
+  @apply rounded-xl border border-border/40 bg-card/90 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300;
+}
+
+.apple-button {
+  @apply rounded-full px-4 py-1.5 font-medium bg-primary/10 text-primary hover:bg-primary/20 transition-all duration-300;
+}
+
+.apple-input {
+  @apply rounded-lg border border-border/60 bg-background/60 focus:ring-2 focus:ring-primary/20 focus:border-primary/60 transition-all duration-300;
+}
+
+/* Responsive chart fixes */
+.responsive-chart {
+  @apply w-full h-full min-h-[300px] max-h-[500px];
+}
+
+.responsive-chart-container {
+  @apply w-full overflow-x-auto overflow-y-hidden pb-4;
+}
+
+/* Remove App.css legacy styling that might be causing issues */
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.card {
+  padding: 0;
+}
+
+/* Mobile-friendly styles */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  .card-mobile-spacing {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Fix overlapping charts */
+.recharts-wrapper {
+  width: 100% !important;
+}
+
+.recharts-responsive-container {
+  width: 100% !important;
+}

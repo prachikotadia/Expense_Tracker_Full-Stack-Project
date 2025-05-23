@@ -1,0 +1,91 @@
+
+/* Reset default styles from Vite template */
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+
+/* Remove legacy styles */
+.logo,
+.card,
+.read-the-docs {
+  all: unset;
+}
+
+/* Ensure full width layouts */
+.full-width {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Ensure content doesn't overflow */
+.overflow-guard {
+  overflow-x: hidden;
+}
+
+/* Chart styles */
+.recharts-sector:hover {
+  opacity: 0.8;
+  transform: scale(1.02);
+  transition: all 0.3s ease-in-out;
+}
+
+.recharts-bar-rectangle:hover {
+  opacity: 0.8;
+}
+
+/* Chart tooltip styling */
+.recharts-tooltip-wrapper {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+/* Chart axis styling */
+.recharts-cartesian-axis-line {
+  stroke-width: 1;
+}
+
+/* Donut chart center styling */
+.donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Apple-style design tweaks */
+.apple-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.apple-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* For dark mode */
+.dark .apple-card {
+  background: rgba(30, 30, 30, 0.8);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive typography */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
+  .text-3xl {
+    font-size: 1.5rem;
+  }
+}
