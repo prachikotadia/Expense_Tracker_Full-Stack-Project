@@ -1,9 +1,10 @@
-from pydantic import BaseSettings, Field, AnyUrl
+from pydantic_settings import BaseSettings
+from pydantic import Field, PostgresDsn
 from typing import List
 
 
 class Settings(BaseSettings):
-    DATABASE_URL: AnyUrl = Field(..., env="DATABASE_URL")
+    DATABASE_URL: PostgresDsn = Field(..., env="DATABASE_URL")
     JWT_SECRET_KEY: str = Field(..., env="JWT_SECRET_KEY")
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
     BACKEND_CORS_ORIGINS: List[str] = [

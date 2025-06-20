@@ -1,15 +1,22 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from typing import List
+from fastapi.security import OAuth2PasswordBearer
+from fastapi import Security
 
 from app.db import get_db
 from app.models.budget import Budget, BudgetCycle
 from app.schemas.budget import BudgetCreate, BudgetOut
 from app.routes.auth import get_current_user
 from app.models.user import User
+from app.schemas.auth import UserCreate, UserLogin, Token
+from app.utils.hash import hash_password, verify_password
+from app.utils.jwt import create_access_token, decode_access_token
+from datetime import timedelta
+from app.schemas.auth import UserOut
+
 
 router = APIRouter()
-
 
 @router.get("", response_model=List[BudgetOut])
 def get_budgets(user: User = Depends(get_current_user), db: Session = Depends(get_db)):
